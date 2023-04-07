@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 protocol MemoStorageType {
+    
     @discardableResult
     func createMemo(content: String) -> Observable<Memo>
     
@@ -20,7 +21,5 @@ protocol MemoStorageType {
     
     @discardableResult
     func delete(memo: Memo) -> Observable<Memo>
-    
-    
     
 }
