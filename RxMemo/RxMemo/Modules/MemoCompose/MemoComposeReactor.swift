@@ -6,10 +6,14 @@
 //
 
 import Foundation
+
+import RxCocoa
+import RxFlow
 import ReactorKit
 
-class MemoComposeReactor: Reactor {
+class MemoComposeReactor: Reactor, Stepper {
     
+    // MARK: - Events
     enum Action {
         
     }
@@ -18,6 +22,10 @@ class MemoComposeReactor: Reactor {
         
     }
     
+    // MARK: - Steeper
+    var steps: PublishRelay<Step> = .init()
+    
+    // MARK: - Properties
     var initialState: State
     
     init(initialState: State) {
