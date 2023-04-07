@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import ReactorKit
 
-class MemoListViewController: UIViewController {
+class MemoListViewController: UIViewController, StoryboardView {
+    
+    
+    var disposeBag = DisposeBag()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    func bind(reactor: MemoListReactor) {
+        
+    }
 
 }
 

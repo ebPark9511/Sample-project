@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import ReactorKit
 
-class MemoComposeViewController: UIViewController {
+class MemoComposeViewController: UIViewController, StoryboardView {
+    
+    
+    var disposeBag = DisposeBag()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    func bind(reactor: MemoComposeReactor) {
+        
+    }
 
 }
+
 
