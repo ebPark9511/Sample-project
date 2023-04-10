@@ -18,8 +18,7 @@ class AppStepper: Stepper {
     
     private let provider: ServiceProviderType
     private let disposeBag: DisposeBag = .init()
-    
-    
+     
     init(provider: ServiceProviderType) {
         self.provider = provider
     }
@@ -41,19 +40,24 @@ class AppFlow: Flow {
     var root: Presentable { self.rootWindow }
 
     private let rootWindow: UIWindow
+    private let provider: ServiceProviderType
     
     deinit {
         print("\(type(of: self)): \(#function)")
     }
     
-    init(withWindow window: UIWindow) {
+    init(
+        withWindow window: UIWindow,
+        and services: ServiceProviderType
+    ) {
         self.rootWindow = window
+        self.provider = services
     }
     
     func navigate(to step: Step) -> FlowContributors {
 //        guard let step = step as? SampleStep else { return FlowContributors.none }
         
-        let memoFlow = MemoReadingFlow()
+        let memoFlow = MemoReadingFlow(with: self.provider)
         
         /// .created -> memoFlow의 root 파라메터를 클로저로 반환.
         Flows.use(memoFlow, when: .created) { [unowned self] root in

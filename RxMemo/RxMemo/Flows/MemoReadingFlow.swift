@@ -20,6 +20,12 @@ class MemoReadingFlow: Flow {
         return viewController
     }()
     
+    private let provider: ServiceProviderType
+    
+    init(with services: ServiceProviderType) {
+        self.provider = services
+    }
+    
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? SampleStep else { return FlowContributors.none }
         
@@ -51,7 +57,7 @@ class MemoReadingFlow: Flow {
 private extension MemoReadingFlow {
     
     func coordinateToMemoList() -> FlowContributors {
-        let reactor = MemoListReactor(initialState: .init())
+        let reactor = MemoListReactor(provider: self.provider)
         
         let viewController = UIStoryboard(
             name: "MemoListViewController",

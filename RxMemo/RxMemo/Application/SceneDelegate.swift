@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let provider = ServiceProvider()
         
-        let appFlow = AppFlow(withWindow: window)
+        let appFlow = AppFlow(withWindow: window, and: provider)
         let appStepper = AppStepper(provider: provider)
         
         coordinator.coordinate(flow: appFlow, with: appStepper)

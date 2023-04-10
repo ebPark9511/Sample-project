@@ -19,6 +19,7 @@
 		1DFD5DC729E3D8E200362CC4 /* MemoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFD5DC629E3D8E200362CC4 /* MemoDetailViewController.storyboard */; };
 		1DFD5DC929E3D91000362CC4 /* MemoComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFD5DC829E3D91000362CC4 /* MemoComposeViewController.storyboard */; };
 		1DFD5DCB29E3DC2F00362CC4 /* MemoWritingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD5DCA29E3DC2F00362CC4 /* MemoWritingFlow.swift */; };
+		1DFD5DD029E3F35A00362CC4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD5DCF29E3F35A00362CC4 /* UIViewController+Rx.swift */; };
 		BD35E2EC29E0049F00026C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E2EB29E0049F00026C5D /* AppDelegate.swift */; };
 		BD35E2EE29E0049F00026C5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E2ED29E0049F00026C5D /* SceneDelegate.swift */; };
 		BD35E2F029E0049F00026C5D /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E2EF29E0049F00026C5D /* MemoListViewController.swift */; };
@@ -44,6 +45,7 @@
 		1DFD5DC629E3D8E200362CC4 /* MemoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoDetailViewController.storyboard; sourceTree = "<group>"; };
 		1DFD5DC829E3D91000362CC4 /* MemoComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoComposeViewController.storyboard; sourceTree = "<group>"; };
 		1DFD5DCA29E3DC2F00362CC4 /* MemoWritingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWritingFlow.swift; sourceTree = "<group>"; };
+		1DFD5DCF29E3F35A00362CC4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		BD35E2E829E0049F00026C5D /* RxMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD35E2EB29E0049F00026C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD35E2ED29E0049F00026C5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,32 @@
 			path = Flows;
 			sourceTree = "<group>";
 		};
+		1DFD5DCC29E3F28300362CC4 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				BD35E2F929E004A600026C5D /* Info.plist */,
+				BD35E2F629E004A600026C5D /* LaunchScreen.storyboard */,
+				BD35E2F429E004A600026C5D /* Assets.xcassets */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		1DFD5DCD29E3F30F00362CC4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1DFD5DCE29E3F31C00362CC4 /* Rx */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		1DFD5DCE29E3F31C00362CC4 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				1DFD5DCF29E3F35A00362CC4 /* UIViewController+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 		BD35E2DF29E0049F00026C5D = {
 			isa = PBXGroup;
 			children = (
@@ -107,14 +135,13 @@
 		BD35E2EA29E0049F00026C5D /* RxMemo */ = {
 			isa = PBXGroup;
 			children = (
+				1DFD5DCD29E3F30F00362CC4 /* Extension */,
+				1DFD5DCC29E3F28300362CC4 /* Supporting */,
 				1DFD5DAF29E2E30C00362CC4 /* Flows */,
 				BD35E31729E0096200026C5D /* Services */,
 				BD35E31429E0088C00026C5D /* Modules */,
 				BD35E31329E0087A00026C5D /* Application */,
 				BD35E31229E0081B00026C5D /* Models */,
-				BD35E2F429E004A600026C5D /* Assets.xcassets */,
-				BD35E2F629E004A600026C5D /* LaunchScreen.storyboard */,
-				BD35E2F929E004A600026C5D /* Info.plist */,
 			);
 			path = RxMemo;
 			sourceTree = "<group>";
@@ -291,6 +318,7 @@
 				BD35E32529E00EA200026C5D /* MemoDetailViewController.swift in Sources */,
 				BD35E32A29E00F2300026C5D /* MemoListReactor.swift in Sources */,
 				BD35E32129E00A9C00026C5D /* MemoryStorage.swift in Sources */,
+				1DFD5DD029E3F35A00362CC4 /* UIViewController+Rx.swift in Sources */,
 				BD35E31A29E0097B00026C5D /* MemoStorageType.swift in Sources */,
 				BD35E2EC29E0049F00026C5D /* AppDelegate.swift in Sources */,
 				BD35E31F29E00A8A00026C5D /* RxMemo.xcdatamodeld in Sources */,
@@ -444,7 +472,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HC2Z7MJWST;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RxMemo/Info.plist;
+				INFOPLIST_FILE = RxMemo/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -471,7 +499,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HC2Z7MJWST;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RxMemo/Info.plist;
+				INFOPLIST_FILE = RxMemo/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

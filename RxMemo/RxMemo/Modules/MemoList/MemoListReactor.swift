@@ -19,10 +19,15 @@ class MemoListReactor: Reactor, Stepper {
     enum Action {
         case detail
         case write
+        case loadData
+    }
+     
+    enum Mutation {
+        case setMemos(_ memos: [Memo])
     }
     
     struct State {
-        
+        var memos: [Memo]?
     }
     
     // MARK: - Steeper
@@ -30,12 +35,18 @@ class MemoListReactor: Reactor, Stepper {
     
     // MARK: - Properties
     var initialState: State
+    let provider: ServiceProviderType
     
-    init(initialState: State) {
+    init(
+        initialState: State = .init(),
+        provider: ServiceProviderType
+    ) {
         self.initialState = initialState
+        self.provider = provider
     }
     
-    func mutate(action: Action) -> Observable<Action> {
+    // MARK: - mutate
+    func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .detail:
             steps.accept(SampleStep.memoDetail)
@@ -44,14 +55,31 @@ class MemoListReactor: Reactor, Stepper {
         case .write:
             steps.accept(SampleStep.memoComposeIsRequired)
             return .empty()
+            
+        case .loadData:
+            return self.fetchMemo()
         }
     }
     
-    func reduce(state: State, mutation: Action) -> State {
+    // MARK: - reduce
+    func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         
+        switch mutation {
+        case .setMemos(let memos):
+            newState.memos = memos
+        }
         
         return newState
+    }
+    
+}
+
+// MARK: Private Method
+private extension MemoListReactor {
+    
+    func fetchMemo() -> Observable<Mutation> {
+        return .just(.setMemos(self.provider.memoryStorage.memoList()))
     }
     
 }
