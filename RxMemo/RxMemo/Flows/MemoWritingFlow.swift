@@ -20,6 +20,12 @@ class MemoWritingFlow: Flow {
         return viewController
     }()
     
+    private let provider: ServiceProviderType
+    
+    init(provider: ServiceProviderType) {
+        self.provider = provider
+    }
+    
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? SampleStep else { return FlowContributors.none }
         
@@ -43,7 +49,7 @@ class MemoWritingFlow: Flow {
 private extension MemoWritingFlow {
     
     func coordinateToMemoCompose() -> FlowContributors {
-        let reactor = MemoComposeReactor(initialState: .init())
+        let reactor = MemoComposeReactor(provider: self.provider)
         
         let viewController = UIStoryboard(
             name: "MemoComposeViewController",
@@ -52,7 +58,7 @@ private extension MemoWritingFlow {
             .instantiateInitialViewController()
         as! MemoComposeViewController
         
-        viewController.title = "메모구성"
+        viewController.title = "새 메모"
         
         viewController.loadViewIfNeeded()
         

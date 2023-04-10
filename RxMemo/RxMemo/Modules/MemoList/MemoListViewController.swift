@@ -15,18 +15,25 @@ import RxFlow
 class MemoListViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
-    
-//    @IBOutlet private weak var writeButton: UIButton!
-//    @IBOutlet private weak var deatilButton: UIButton!
-    
+     
     @IBOutlet private weak var listTableView: UITableView!
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var deleteButton: UIButton!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    
+    private var addMemoButton: UIBarButtonItem! = {
+        let button = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.add,
+            target: nil,
+            action: nil
+        )
+        return button
+    }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        self.navigationItem.setRightBarButton(addMemoButton, animated: false)
     }
 
     func bind(reactor: MemoListReactor) {
@@ -42,10 +49,10 @@ class MemoListViewController: UIViewController, StoryboardView {
 //            .disposed(by: disposeBag)
 //
 //
-//        writeButton.rx.tap
-//            .map { Reactor.Action.write }
-//            .bind(to: reactor.action)
-//            .disposed(by: disposeBag)
+        self.addMemoButton.rx.tap
+            .map { Reactor.Action.write }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         self.deleteButton.rx.tap
             .map { Reactor.Action.delete }

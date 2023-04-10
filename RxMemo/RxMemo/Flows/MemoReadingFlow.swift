@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxFlow
 
 /// 메모 보기 플로우
@@ -67,22 +68,10 @@ private extension MemoReadingFlow {
         as! MemoListViewController
         
         viewController.title = "메모목록"
-        
         viewController.loadViewIfNeeded()
         
         viewController.bind(reactor: reactor)
-         
         
-        let memoListButton = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonItem.SystemItem.add,
-            target: self,
-            action: #selector(didTap)
-        )
-        
-        viewController
-            .navigationItem
-            .setRightBarButton(memoListButton, animated: false)
-         
         self.rootViewController.setViewControllers([viewController], animated: true)
         
         return .one(
@@ -114,7 +103,7 @@ private extension MemoReadingFlow {
     }
     
     func coordinateToMemoCompose() -> FlowContributors {
-        let memoWritingFlow = MemoWritingFlow()
+        let memoWritingFlow = MemoWritingFlow(provider: self.provider)
         
         Flows.use(memoWritingFlow, when: .created) { [unowned self] root in
             self.rootViewController.present(root, animated: true)

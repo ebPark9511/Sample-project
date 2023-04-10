@@ -10,10 +10,8 @@ import ReactorKit
 
 class MemoDetailViewController: UIViewController, StoryboardView {
     
-    
     var disposeBag = DisposeBag()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
