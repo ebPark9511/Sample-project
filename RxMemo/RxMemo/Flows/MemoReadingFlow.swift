@@ -71,8 +71,20 @@ private extension MemoReadingFlow {
         viewController.loadViewIfNeeded()
         
         viewController.bind(reactor: reactor)
+         
         
+        let memoListButton = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.add,
+            target: self,
+            action: #selector(didTap)
+        )
+        
+        viewController
+            .navigationItem
+            .setRightBarButton(memoListButton, animated: false)
+         
         self.rootViewController.setViewControllers([viewController], animated: true)
+        
         return .one(
             flowContributor: .contribute(withNextPresentable: viewController,
                                          withNextStepper: reactor)
@@ -114,4 +126,7 @@ private extension MemoReadingFlow {
                                                  withNextStepper: nextStep))
     }
     
+    @objc func didTap() {
+        print("test")
+    }
 }

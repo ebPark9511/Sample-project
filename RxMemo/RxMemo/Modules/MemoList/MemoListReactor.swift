@@ -19,6 +19,8 @@ class MemoListReactor: Reactor, Stepper {
     enum Action {
         case detail
         case write
+        case delete
+        case add
         case loadData
     }
      
@@ -56,6 +58,12 @@ class MemoListReactor: Reactor, Stepper {
             steps.accept(SampleStep.memoComposeIsRequired)
             return .empty()
             
+        case .delete:
+            return self.deleteMemo()
+            
+        case .add:
+            return self.addMemo()
+            
         case .loadData:
             return self.fetchMemo()
         }
@@ -80,6 +88,23 @@ private extension MemoListReactor {
     
     func fetchMemo() -> Observable<Mutation> {
         return .just(.setMemos(self.provider.memoryStorage.memoList()))
+    }
+     
+    func deleteMemo() -> Observable<Mutation> {
+        let list = self.provider.memoryStorage.memoList()
+        
+        if let memo = list.first {
+            self.provider.memoryStorage.delete(memo: memo)
+        }
+        
+        return .just(.setMemos(self.provider.memoryStorage.memoList()))
+    }
+    
+    func addMemo() -> Observable<Mutation> {
+        self.provider.memoryStorage.createMemo(content: Date().description)
+        
+        return .just(.setMemos(self.provider.memoryStorage.memoList()))
+        
     }
     
 }
