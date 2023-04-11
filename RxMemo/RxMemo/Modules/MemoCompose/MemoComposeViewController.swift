@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import ReactorKit
 
-class MemoComposeViewController: UIViewController, StoryboardView {
+final class MemoComposeViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
      

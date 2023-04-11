@@ -6,11 +6,19 @@
 //
 
 import UIKit
+
 import ReactorKit
 
 class MemoDetailViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
+    
+    @IBOutlet private weak var contentTableView: UITableView!
+    
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
+    @IBOutlet private weak var editButton: UIBarButtonItem!
+    @IBOutlet private weak var shareButton: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
