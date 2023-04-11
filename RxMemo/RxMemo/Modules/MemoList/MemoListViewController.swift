@@ -42,13 +42,7 @@ class MemoListViewController: UIViewController, StoryboardView {
     }
     
     private func bindAction(_ reactor: MemoListReactor) {
-//
-//        deatilButton.rx.tap
-//            .map { Reactor.Action.detail }
-//            .bind(to: reactor.action)
-//            .disposed(by: disposeBag)
-//
-//
+        
         self.addMemoButton.rx.tap
             .map { Reactor.Action.write }
             .bind(to: reactor.action)

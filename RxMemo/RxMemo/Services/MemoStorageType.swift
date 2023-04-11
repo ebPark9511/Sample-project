@@ -7,7 +7,11 @@
 
 import Foundation
 
+import RxSwift
+
 protocol MemoStorageType {
+     
+    var updated: BehaviorSubject<Void> { get set }
     
     @discardableResult
     func createMemo(content: String) -> Memo

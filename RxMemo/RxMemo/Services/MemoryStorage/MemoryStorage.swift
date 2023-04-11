@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 import RxCocoa
 import RxSwift
 
@@ -16,10 +17,14 @@ class MemoryStorage: MemoStorageType {
         Memo(content: "Lorem, Ipsum", insertDate: Date().addingTimeInterval(-20)),
     ]
     
+    var updated: BehaviorSubject<Void> = .init(value: Void())
+    
     @discardableResult
     func createMemo(content: String) -> Memo {
         let memo = Memo(content: content)
         list.insert(memo, at: 0)
+        
+        self.updated.onNext(Void())
         
         return memo
     }
@@ -31,14 +36,16 @@ class MemoryStorage: MemoStorageType {
     
     @discardableResult
     func update(memo: Memo, content: String) -> Memo {
-        let updated = Memo(original: memo, updatedContent: content)
+        let updatedMemo = Memo(original: memo, updatedContent: content)
         
         if let index = list.firstIndex(where: { $0 == memo }) {
             list.remove(at: index)
-            list.insert(updated, at: index)
+            list.insert(updatedMemo, at: index)
         }
         
-        return updated
+        self.updated.onNext(Void())
+        
+        return updatedMemo
     }
     
     @discardableResult
@@ -46,6 +53,8 @@ class MemoryStorage: MemoStorageType {
         if let index = list.firstIndex(where: { $0 == memo }) {
             list.remove(at: index)
         }
+        
+        self.updated.onNext(Void())
         
         return memo
     }

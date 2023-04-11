@@ -12,9 +12,10 @@ import ReactorKit
 
 class MemoComposeViewController: UIViewController, StoryboardView {
     
-    
     var disposeBag = DisposeBag()
      
+    deinit { print("\(type(of: self)): \(#function)") }
+    
     @IBOutlet private weak var contentTextView: UITextView!
     
     private var cancelButton: UIBarButtonItem! = {
@@ -25,7 +26,7 @@ class MemoComposeViewController: UIViewController, StoryboardView {
         )
         return button
     }()
-     
+
     private var saveButton: UIBarButtonItem! = {
         let button = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonItem.SystemItem.save,
@@ -34,12 +35,17 @@ class MemoComposeViewController: UIViewController, StoryboardView {
         )
         return button
     }()
-     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.setLeftBarButton(cancelButton, animated: false)
         self.navigationItem.setRightBarButton(saveButton, animated: false)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = DisposeBag()
     }
 
     func bind(reactor: MemoComposeReactor) {
@@ -51,9 +57,10 @@ class MemoComposeViewController: UIViewController, StoryboardView {
             .map { Reactor.Action.cancel }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+
         self.saveButton.rx.tap
-            .map { Reactor.Action.save }
+            .map { _ in self.contentTextView.text }
+            .map { Reactor.Action.save(content: $0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

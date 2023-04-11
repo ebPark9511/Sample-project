@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxSwift
 import RxCocoa
 import RxFlow
 
@@ -14,7 +15,7 @@ import RxFlow
 class MemoReadingFlow: Flow {
     
     var root: Presentable { self.rootViewController }
-    
+
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
         viewController.view.backgroundColor = .white
@@ -115,7 +116,4 @@ private extension MemoReadingFlow {
                                                  withNextStepper: nextStep))
     }
     
-    @objc func didTap() {
-        print("test")
-    }
 }

@@ -56,8 +56,12 @@ class MemoListReactor: Reactor, Stepper {
             
         case .write:
             steps.accept(SampleStep.memoComposeIsRequired)
-            return .empty()
             
+            return Observable.concat([
+                provider.memoryStorage.updated
+                    .map { .setMemos(self.provider.memoryStorage.memoList()) }
+            ])
+             
         case .delete:
             return self.deleteMemo()
             

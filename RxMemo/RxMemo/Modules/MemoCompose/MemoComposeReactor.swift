@@ -15,7 +15,7 @@ class MemoComposeReactor: Reactor, Stepper {
     
     // MARK: - Events
     enum Action {
-        case save
+        case save(content: String)
         case cancel
     }
     
@@ -47,7 +47,8 @@ class MemoComposeReactor: Reactor, Stepper {
         case .cancel:
             steps.accept(SampleStep.memoComposeIsComplete)
             
-        case .save:
+        case .save(let content):
+            provider.memoryStorage.createMemo(content: content)
             steps.accept(SampleStep.memoComposeIsComplete)
         }
         
@@ -55,8 +56,8 @@ class MemoComposeReactor: Reactor, Stepper {
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = state
-        return newState
+//        var newState = state
+        return state
     }
 }
 
