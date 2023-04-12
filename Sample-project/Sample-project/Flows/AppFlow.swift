@@ -57,8 +57,29 @@ class AppFlow: Flow {
     }
     
     func navigate(to step: Step) -> FlowContributors {
-//        guard let step = step as? SampleStep else { return FlowContributors.none }
+        guard let step = step as? SampleStep else { return FlowContributors.none }
         
+        switch step {
+        case .dashboardIsRequired:
+            return self.coordinatorToDashboard()
+        default:
+            return .none
+        } 
+    }
+    
+}
+
+private extension AppFlow {
+    
+    /**
+     FlowContributors 발생할.. 다음 항목을 나타낸다.
+     - .mutiple:  여러 FlowContributorsr가 Flow에 기여
+     - .one: 하나의 FlowContributorsr가 Flow에 기여
+     - end: 이 Flow의 해제를 나타내며, 주어진 단계를 상위 Flow로 전달합니다. (breakPoint 걸어보면 상위 Flow의 navigation(to:)가 호출된다.
+     - .none: 더 이상 탐색이 발생되지 않습니다.
+     */
+    
+    func coordinatorToDashboard() -> FlowContributors {
         let dashboardFlow = DashboardFlow(with: self.provider)
         
         /// .created -> memoFlow의 root 파라메터를 클로저로 반환.
@@ -66,7 +87,7 @@ class AppFlow: Flow {
             self.rootWindow.rootViewController = root
         }
         
-        let nextStep = OneStepper(withSingleStep: step)
+        let nextStep = OneStepper(withSingleStep: SampleStep.dashboardIsRequired)
         
         return .one(flowContributor: .contribute(withNextPresentable: dashboardFlow,
                                                  withNextStepper: nextStep))
@@ -74,4 +95,3 @@ class AppFlow: Flow {
     }
     
 }
-

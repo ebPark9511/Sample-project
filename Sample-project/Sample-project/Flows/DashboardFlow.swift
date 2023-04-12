@@ -66,10 +66,11 @@ private extension DashboardFlow {
                     withNextStepper: OneStepper(withSingleStep: SampleStep.memoList)
                 ),
                 
-                    .contribute(
-                        withNextPresentable: githubSearchFlow,
-                        withNextStepper: OneStepper(withSingleStep: SampleStep.githubSearchMain)
-                    )
+                .contribute(
+                    withNextPresentable: githubSearchFlow,
+                    withNextStepper: OneStepper(withSingleStep: SampleStep.githubSearchMain)
+                )
+                
             ]
         )
     }

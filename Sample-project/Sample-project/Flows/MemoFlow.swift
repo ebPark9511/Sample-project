@@ -36,16 +36,13 @@ class MemoReadingFlow: Flow {
             return coordinateToMemoList()
 
         case .memoDetail(let memo):
-            return coordinateToMemoDetail(memo: memo) // 메모식별값필요
-            
-        case .memoDetailIsComplete:
-            self.rootViewController.popViewController(animated: true)
+            return coordinateToMemoDetail(memo: memo)
             
         case .memoComposeIsRequired:
             return coordinateToMemoCompose()
             
-        case .memoComposeIsComplete:
-            self.rootViewController.presentedViewController?.dismiss(animated: true)
+        case .memoComposeIsComplete, .memoDetailIsComplete:
+            self.rootViewController.popViewController(animated: true)
 
         default:
             break
@@ -94,7 +91,6 @@ private extension MemoReadingFlow {
         as! MemoDetailViewController
         
         viewController.title = "메모상세"
-        
         viewController.loadViewIfNeeded()
         
         viewController.bind(reactor: reactor)
@@ -107,16 +103,26 @@ private extension MemoReadingFlow {
     }
     
     func coordinateToMemoCompose() -> FlowContributors {
-        let memoWritingFlow = MemoWritingFlow(provider: self.provider)
+        let reactor = MemoComposeReactor(provider: self.provider)
         
-        Flows.use(memoWritingFlow, when: .created) { [unowned self] root in
-            self.rootViewController.present(root, animated: true)
-        }
+        let viewController = UIStoryboard(
+            name: "MemoComposeViewController",
+            bundle: nil
+        )
+            .instantiateInitialViewController()
+        as! MemoComposeViewController
         
-        let nextStep = OneStepper(withSingleStep: SampleStep.memoComposeIsRequired)
+        viewController.title = "새 메모"
+        viewController.loadViewIfNeeded()
         
-        return .one(flowContributor: .contribute(withNextPresentable: memoWritingFlow,
-                                                 withNextStepper: nextStep))
+        viewController.bind(reactor: reactor)
+        
+        self.rootViewController.pushViewController(viewController, animated: true)
+        
+        return .one(
+            flowContributor: .contribute(withNextPresentable: viewController,
+                                         withNextStepper: reactor)
+        )
     }
     
 }

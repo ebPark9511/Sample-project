@@ -46,9 +46,14 @@ final class MemoComposeViewController: UIViewController, StoryboardView {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        disposeBag = DisposeBag()
-    }
+        
+        self.navigationItem.setLeftBarButton(nil, animated: false)
+        self.navigationItem.setRightBarButton(nil, animated: false)
+        self.cancelButton = nil
+        self.saveButton = nil
 
+    }
+    
     func bind(reactor: MemoComposeReactor) {
         bindAction(reactor)
     }
