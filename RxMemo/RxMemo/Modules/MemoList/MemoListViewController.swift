@@ -53,7 +53,6 @@ class MemoListViewController: UIViewController, StoryboardView {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        
         self.addButton.rx.tap
             .map { Reactor.Action.add }
             .bind(to: reactor.action)

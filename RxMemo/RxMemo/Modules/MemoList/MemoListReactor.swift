@@ -56,17 +56,14 @@ class MemoListReactor: Reactor, Stepper {
             
         case .write:
             steps.accept(SampleStep.memoComposeIsRequired)
+            return .empty()
             
-            return Observable.concat([
-                provider.memoryStorage.updated
-                    .map { .setMemos(self.provider.memoryStorage.memoList()) }
-            ])
-             
         case .delete:
-            return self.deleteMemo()
+            return .empty()
             
         case .add:
-            return self.addMemo()
+            self.provider.memoryStorage.createMemo(content: Date().description)
+            return .empty()
             
         case .loadData:
             return self.fetchMemo()
@@ -76,7 +73,7 @@ class MemoListReactor: Reactor, Stepper {
     // MARK: - reduce
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-        
+         
         switch mutation {
         case .setMemos(let memos):
             newState.memos = memos
@@ -91,23 +88,28 @@ class MemoListReactor: Reactor, Stepper {
 private extension MemoListReactor {
     
     func fetchMemo() -> Observable<Mutation> {
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
+        return Observable.concat([
+            self.provider.memoryStorage.memoList()
+                .map { Mutation.setMemos($0) }
+        ])
     }
      
-    func deleteMemo() -> Observable<Mutation> {
-        let list = self.provider.memoryStorage.memoList()
-        
-        if let memo = list.first {
-            self.provider.memoryStorage.delete(memo: memo)
-        }
-        
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
-    }
+//    func deleteMemo() -> Observable<Mutation> {
+//        let list = self.provider.memoryStorage.memoList()
+//
+//        if let memo = list.first {
+//            self.provider.memoryStorage.delete(memo: memo)
+//        }
+//
+//        return Observable.concat([
+//            self.provider.memoryStorage.memoList()
+//                .map { Mutation.setMemos($0) }
+//        ])
+//    }
     
     func addMemo() -> Observable<Mutation> {
         self.provider.memoryStorage.createMemo(content: Date().description)
-        
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
+        return .empty()
         
     }
     

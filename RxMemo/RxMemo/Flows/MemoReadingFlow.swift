@@ -82,7 +82,7 @@ private extension MemoReadingFlow {
     }
     
     func coordinateToMemoDetail() -> FlowContributors {
-        let reactor = MemoDetailReactor(initialState: .init())
+        let reactor = MemoDetailReactor()
         
         let viewController = UIStoryboard(
             name: "MemoDetailViewController",

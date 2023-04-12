@@ -64,25 +64,4 @@ class MemoComposeReactor: Reactor, Stepper {
 // MARK: Private Method
 private extension MemoComposeReactor {
     
-    func fetchMemo() -> Observable<Mutation> {
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
-    }
-     
-    func deleteMemo() -> Observable<Mutation> {
-        let list = self.provider.memoryStorage.memoList()
-        
-        if let memo = list.first {
-            self.provider.memoryStorage.delete(memo: memo)
-        }
-        
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
-    }
-    
-    func addMemo() -> Observable<Mutation> {
-        self.provider.memoryStorage.createMemo(content: Date().description)
-        
-        return .just(.setMemos(self.provider.memoryStorage.memoList()))
-        
-    }
-    
 }

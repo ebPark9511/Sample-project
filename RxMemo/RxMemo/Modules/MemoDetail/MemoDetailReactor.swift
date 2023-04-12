@@ -19,7 +19,8 @@ class MemoDetailReactor: Reactor, Stepper {
     }
     
     struct State {
-        
+        let memo: Memo?
+        let contents: String?
     }
     
     // MARK: - Steeper
@@ -28,7 +29,20 @@ class MemoDetailReactor: Reactor, Stepper {
     // MARK: - Properties
     var initialState: State
     
-    init(initialState: State) {
+    init(
+        initialState: State = .init(memo: nil, contents: nil)
+    ) {
         self.initialState = initialState
     }
 }
+
+//private func Date {
+//    var formatter: DateFormatter {
+//        let f = DateFormatter()
+//        f.locale = Locale(identifier: "ko_kr")
+//        f.dateStyle = .medium
+//        f.timeStyle = .medium
+//        return f
+//    }
+//}
+// 메모보기 -> 편집 -> 메모편집 -> 메모보기에서 변경된 내용이 반영되어야 함.

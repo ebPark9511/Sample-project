@@ -17,46 +17,46 @@ class MemoryStorage: MemoStorageType {
         Memo(content: "Lorem, Ipsum", insertDate: Date().addingTimeInterval(-20)),
     ]
     
-    var updated: BehaviorSubject<Void> = .init(value: Void())
+    private lazy var store = BehaviorSubject<[Memo]>(value: list)
     
     @discardableResult
-    func createMemo(content: String) -> Memo {
+    func createMemo(content: String) -> Observable<Memo> {
         let memo = Memo(content: content)
         list.insert(memo, at: 0)
         
-        self.updated.onNext(Void())
+        self.store.onNext(list)
         
-        return memo
+        return .just(memo)
     }
     
     @discardableResult
-    func memoList() -> [Memo] {
-        return list
+    func memoList() -> Observable<[Memo]> {
+        return store
     }
     
     @discardableResult
-    func update(memo: Memo, content: String) -> Memo {
-        let updatedMemo = Memo(original: memo, updatedContent: content)
+    func update(memo: Memo, content: String) -> Observable<Memo> {
+        let updated = Memo(original: memo, updatedContent: content)
         
         if let index = list.firstIndex(where: { $0 == memo }) {
             list.remove(at: index)
-            list.insert(updatedMemo, at: index)
+            list.insert(updated, at: index)
         }
         
-        self.updated.onNext(Void())
+        self.store.onNext(list)
         
-        return updatedMemo
+        return .just(memo)
     }
     
     @discardableResult
-    func delete(memo: Memo) -> Memo {
+    func delete(memo: Memo) -> Observable<Memo> {
         if let index = list.firstIndex(where: { $0 == memo }) {
             list.remove(at: index)
         }
         
-        self.updated.onNext(Void())
+        self.store.onNext(list)
         
-        return memo
+        return .just(memo)
     }
     
     

@@ -6,23 +6,21 @@
 //
 
 import Foundation
-
 import RxSwift
 
 protocol MemoStorageType {
-     
-    var updated: BehaviorSubject<Void> { get set }
+    @discardableResult
+    func createMemo(content: String) -> Observable<Memo>
     
     @discardableResult
-    func createMemo(content: String) -> Memo
+    func memoList() -> Observable<[Memo]>
     
     @discardableResult
-    func memoList() -> [Memo]
+    func update(memo: Memo, content: String) -> Observable<Memo>
     
     @discardableResult
-    func update(memo: Memo, content: String) -> Memo
+    func delete(memo: Memo) -> Observable<Memo>
     
-    @discardableResult
-    func delete(memo: Memo) -> Memo
+    
     
 }
