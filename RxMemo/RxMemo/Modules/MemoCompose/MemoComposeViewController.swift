@@ -14,8 +14,6 @@ final class MemoComposeViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
      
-    deinit { print("\(type(of: self)): \(#function)") }
-    
     @IBOutlet private weak var contentTextView: UITextView!
     
     private var cancelButton: UIBarButtonItem! = {
@@ -36,6 +34,9 @@ final class MemoComposeViewController: UIViewController, StoryboardView {
         return button
     }()
 
+    
+    deinit { print("\(type(of: self)): \(#function)") }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

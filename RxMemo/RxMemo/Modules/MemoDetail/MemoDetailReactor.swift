@@ -15,12 +15,15 @@ class MemoDetailReactor: Reactor, Stepper {
     
     // MARK: - Events
     enum Action {
+        case delete
+    }
+    
+    enum Mutation {
         
     }
     
     struct State {
         let memo: Memo?
-        let contents: String?
     }
     
     // MARK: - Steeper
@@ -29,20 +32,20 @@ class MemoDetailReactor: Reactor, Stepper {
     // MARK: - Properties
     var initialState: State
     
+    deinit { print("\(type(of: self)): \(#function)") }
+    
     init(
-        initialState: State = .init(memo: nil, contents: nil)
+        initialState: State = .init(memo: nil)
     ) {
         self.initialState = initialState
     }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .delete:
+            steps.accept(SampleStep.memoList)
+            return .empty()
+        }
+        
+    }
 }
-
-//private func Date {
-//    var formatter: DateFormatter {
-//        let f = DateFormatter()
-//        f.locale = Locale(identifier: "ko_kr")
-//        f.dateStyle = .medium
-//        f.timeStyle = .medium
-//        return f
-//    }
-//}
-// 메모보기 -> 편집 -> 메모편집 -> 메모보기에서 변경된 내용이 반영되어야 함.

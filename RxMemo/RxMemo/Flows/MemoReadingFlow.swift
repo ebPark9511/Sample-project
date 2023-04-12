@@ -35,8 +35,8 @@ class MemoReadingFlow: Flow {
         case .memoList:
             return coordinateToMemoList()
 
-        case .memoDetail:
-            return coordinateToMemoDetail() // 메모식별값필요
+        case .memoDetail(let memo):
+            return coordinateToMemoDetail(memo: memo) // 메모식별값필요
             
         case .memoComposeIsRequired:
             return coordinateToMemoCompose()
@@ -81,8 +81,8 @@ private extension MemoReadingFlow {
         )
     }
     
-    func coordinateToMemoDetail() -> FlowContributors {
-        let reactor = MemoDetailReactor()
+    func coordinateToMemoDetail(memo: Memo) -> FlowContributors {
+        let reactor = MemoDetailReactor(initialState: .init(memo: memo))
         
         let viewController = UIStoryboard(
             name: "MemoDetailViewController",

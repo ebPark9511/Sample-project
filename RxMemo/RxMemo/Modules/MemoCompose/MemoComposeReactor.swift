@@ -34,6 +34,8 @@ class MemoComposeReactor: Reactor, Stepper {
     var initialState: State
     let provider: ServiceProviderType
     
+    deinit { print("\(type(of: self)): \(#function)") } 
+    
     init(
         initialState: State = .init(content: nil),
         provider: ServiceProviderType

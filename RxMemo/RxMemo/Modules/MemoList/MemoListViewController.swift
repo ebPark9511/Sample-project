@@ -29,6 +29,8 @@ class MemoListViewController: UIViewController, StoryboardView {
         return button
     }()
     
+    deinit { print("\(type(of: self)): \(#function)") }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,24 +45,18 @@ class MemoListViewController: UIViewController, StoryboardView {
     
     private func bindAction(_ reactor: MemoListReactor) {
         
+        self.rx.viewWillAppear
+            .map { _ in Reactor.Action.loadData }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         self.addMemoButton.rx.tap
             .map { Reactor.Action.write }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        self.deleteButton.rx.tap
-            .map { Reactor.Action.delete }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        self.addButton.rx.tap
-            .map { Reactor.Action.add }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        
-        self.rx.viewWillAppear
-            .map { _ in Reactor.Action.loadData }
+        self.listTableView.rx.modelSelected(Memo.self)
+            .map { Reactor.Action.select(memo: $0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }

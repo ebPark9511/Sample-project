@@ -13,18 +13,42 @@ class MemoDetailViewController: UIViewController, StoryboardView {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet private weak var contentTableView: UITableView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UITextView!
     
     @IBOutlet private weak var deleteButton: UIBarButtonItem!
     @IBOutlet private weak var editButton: UIBarButtonItem!
     @IBOutlet private weak var shareButton: UIBarButtonItem!
     
+    deinit { print("\(type(of: self)): \(#function)") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     func bind(reactor: MemoDetailReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+    
+    private func bindAction(_ reactor: MemoDetailReactor) {
+        self.deleteButton.rx.tap
+            .map { Reactor.Action.delete }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindState(_ reactor: MemoDetailReactor) {
+        reactor.state
+            .compactMap { $0.memo?.insertDate.description }
+            .bind(to: self.titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .compactMap { $0.memo?.content }
+            .bind(to: self.contentLabel.rx.text)
+            .disposed(by: disposeBag)
         
     }
 

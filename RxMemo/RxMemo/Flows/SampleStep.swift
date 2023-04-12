@@ -11,7 +11,7 @@ enum SampleStep: Step {
     
     // MemoReading
     case memoList
-    case memoDetail
+    case memoDetail(_ memo: Memo)
     
     // MemoWriting
     case memoComposeIsRequired
