@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D69F09029E6A300002AD062 /* GithubSearchMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D69F08F29E6A300002AD062 /* GithubSearchMainViewController.swift */; };
+		1D69F09229E6A30B002AD062 /* GithubSearchMainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D69F09129E6A30B002AD062 /* GithubSearchMainReactor.swift */; };
+		1D69F09429E6A318002AD062 /* GithubSearchMainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D69F09329E6A318002AD062 /* GithubSearchMainViewController.storyboard */; };
+		1D69F09629E6A88D002AD062 /* GithubSearchFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D69F09529E6A88D002AD062 /* GithubSearchFlow.swift */; };
+		1D69F09829E6AD80002AD062 /* DashboardFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D69F09729E6AD80002AD062 /* DashboardFlow.swift */; };
 		1DFD5DB129E2E32600362CC4 /* SampleStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD5DB029E2E32600362CC4 /* SampleStep.swift */; };
 		1DFD5DB329E2E32D00362CC4 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD5DB229E2E32D00362CC4 /* AppFlow.swift */; };
 		1DFD5DB729E2E52C00362CC4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1DFD5DB629E2E52C00362CC4 /* RxCocoa */; };
@@ -27,7 +32,6 @@
 		BD35E2F829E004A600026C5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD35E2F629E004A600026C5D /* LaunchScreen.storyboard */; };
 		BD35E31629E008CA00026C5D /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E31529E008CA00026C5D /* Memo.swift */; };
 		BD35E31A29E0097B00026C5D /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E31929E0097B00026C5D /* MemoStorageType.swift */; };
-		BD35E31F29E00A8A00026C5D /* RxMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD35E31D29E00A8A00026C5D /* RxMemo.xcdatamodeld */; };
 		BD35E32129E00A9C00026C5D /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E32029E00A9C00026C5D /* MemoryStorage.swift */; };
 		BD35E32529E00EA200026C5D /* MemoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E32429E00EA200026C5D /* MemoDetailViewController.swift */; };
 		BD35E32829E00ED000026C5D /* MemoComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35E32729E00ED000026C5D /* MemoComposeViewController.swift */; };
@@ -37,6 +41,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D69F08F29E6A300002AD062 /* GithubSearchMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchMainViewController.swift; sourceTree = "<group>"; };
+		1D69F09129E6A30B002AD062 /* GithubSearchMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchMainReactor.swift; sourceTree = "<group>"; };
+		1D69F09329E6A318002AD062 /* GithubSearchMainViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GithubSearchMainViewController.storyboard; sourceTree = "<group>"; };
+		1D69F09529E6A88D002AD062 /* GithubSearchFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchFlow.swift; sourceTree = "<group>"; };
+		1D69F09729E6AD80002AD062 /* DashboardFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardFlow.swift; sourceTree = "<group>"; };
 		1DFD5DB029E2E32600362CC4 /* SampleStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleStep.swift; sourceTree = "<group>"; };
 		1DFD5DB229E2E32D00362CC4 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		1DFD5DC029E2E76800362CC4 /* MemoReadingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoReadingFlow.swift; sourceTree = "<group>"; };
@@ -55,7 +64,6 @@
 		BD35E2F929E004A600026C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD35E31529E008CA00026C5D /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		BD35E31929E0097B00026C5D /* MemoStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStorageType.swift; sourceTree = "<group>"; };
-		BD35E31E29E00A8A00026C5D /* RxMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RxMemo.xcdatamodel; sourceTree = "<group>"; };
 		BD35E32029E00A9C00026C5D /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		BD35E32429E00EA200026C5D /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
 		BD35E32729E00ED000026C5D /* MemoComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +87,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D69F08C29E6A195002AD062 /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				BD35E32629E00EB100026C5D /* MemoCompose */,
+				BD35E32329E00E9300026C5D /* MemoDetail */,
+				BD35E32229E00E8100026C5D /* MemoList */,
+			);
+			path = Memo;
+			sourceTree = "<group>";
+		};
+		1D69F08D29E6A29B002AD062 /* GithubSearch */ = {
+			isa = PBXGroup;
+			children = (
+				1D69F08E29E6A2EC002AD062 /* Main */,
+			);
+			path = GithubSearch;
+			sourceTree = "<group>";
+		};
+		1D69F08E29E6A2EC002AD062 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1D69F09329E6A318002AD062 /* GithubSearchMainViewController.storyboard */,
+				1D69F08F29E6A300002AD062 /* GithubSearchMainViewController.swift */,
+				1D69F09129E6A30B002AD062 /* GithubSearchMainReactor.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		1DFD5DAF29E2E30C00362CC4 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +122,8 @@
 				1DFD5DB229E2E32D00362CC4 /* AppFlow.swift */,
 				1DFD5DC029E2E76800362CC4 /* MemoReadingFlow.swift */,
 				1DFD5DCA29E3DC2F00362CC4 /* MemoWritingFlow.swift */,
+				1D69F09529E6A88D002AD062 /* GithubSearchFlow.swift */,
+				1D69F09729E6AD80002AD062 /* DashboardFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -137,8 +175,8 @@
 			children = (
 				1DFD5DCD29E3F30F00362CC4 /* Extension */,
 				1DFD5DCC29E3F28300362CC4 /* Supporting */,
-				1DFD5DAF29E2E30C00362CC4 /* Flows */,
 				BD35E31729E0096200026C5D /* Services */,
+				1DFD5DAF29E2E30C00362CC4 /* Flows */,
 				BD35E31429E0088C00026C5D /* Modules */,
 				BD35E31329E0087A00026C5D /* Application */,
 				BD35E31229E0081B00026C5D /* Models */,
@@ -166,9 +204,8 @@
 		BD35E31429E0088C00026C5D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				BD35E32629E00EB100026C5D /* MemoCompose */,
-				BD35E32329E00E9300026C5D /* MemoDetail */,
-				BD35E32229E00E8100026C5D /* MemoList */,
+				1D69F08D29E6A29B002AD062 /* GithubSearch */,
+				1D69F08C29E6A195002AD062 /* Memo */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -176,9 +213,7 @@
 		BD35E31729E0096200026C5D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BD35E31C29E00A1C00026C5D /* CoreDataStorage */,
 				BD35E31B29E00A0200026C5D /* MemoryStorage */,
-				BD35E31929E0097B00026C5D /* MemoStorageType.swift */,
 				1DFD5DC229E2EE4400362CC4 /* ServiceProvider.swift */,
 			);
 			path = Services;
@@ -187,17 +222,10 @@
 		BD35E31B29E00A0200026C5D /* MemoryStorage */ = {
 			isa = PBXGroup;
 			children = (
+				BD35E31929E0097B00026C5D /* MemoStorageType.swift */,
 				BD35E32029E00A9C00026C5D /* MemoryStorage.swift */,
 			);
 			path = MemoryStorage;
-			sourceTree = "<group>";
-		};
-		BD35E31C29E00A1C00026C5D /* CoreDataStorage */ = {
-			isa = PBXGroup;
-			children = (
-				BD35E31D29E00A8A00026C5D /* RxMemo.xcdatamodeld */,
-			);
-			path = CoreDataStorage;
 			sourceTree = "<group>";
 		};
 		BD35E32229E00E8100026C5D /* MemoList */ = {
@@ -302,6 +330,7 @@
 				BD35E2F829E004A600026C5D /* LaunchScreen.storyboard in Resources */,
 				BD35E2F529E004A600026C5D /* Assets.xcassets in Resources */,
 				1DFD5DC729E3D8E200362CC4 /* MemoDetailViewController.storyboard in Resources */,
+				1D69F09429E6A318002AD062 /* GithubSearchMainViewController.storyboard in Resources */,
 				1DFD5DC929E3D91000362CC4 /* MemoComposeViewController.storyboard in Resources */,
 				1DFD5DC529E2F7FC00362CC4 /* MemoListViewController.storyboard in Resources */,
 			);
@@ -321,14 +350,17 @@
 				1DFD5DD029E3F35A00362CC4 /* UIViewController+Rx.swift in Sources */,
 				BD35E31A29E0097B00026C5D /* MemoStorageType.swift in Sources */,
 				BD35E2EC29E0049F00026C5D /* AppDelegate.swift in Sources */,
-				BD35E31F29E00A8A00026C5D /* RxMemo.xcdatamodeld in Sources */,
 				BD35E32E29E0100100026C5D /* MemoComposeReactor.swift in Sources */,
 				BD35E2EE29E0049F00026C5D /* SceneDelegate.swift in Sources */,
 				1DFD5DC329E2EE4400362CC4 /* ServiceProvider.swift in Sources */,
+				1D69F09029E6A300002AD062 /* GithubSearchMainViewController.swift in Sources */,
+				1D69F09229E6A30B002AD062 /* GithubSearchMainReactor.swift in Sources */,
 				1DFD5DB329E2E32D00362CC4 /* AppFlow.swift in Sources */,
 				BD35E32829E00ED000026C5D /* MemoComposeViewController.swift in Sources */,
+				1D69F09629E6A88D002AD062 /* GithubSearchFlow.swift in Sources */,
 				BD35E32C29E00FCE00026C5D /* MemoDetailReactor.swift in Sources */,
 				BD35E31629E008CA00026C5D /* Memo.swift in Sources */,
+				1D69F09829E6AD80002AD062 /* DashboardFlow.swift in Sources */,
 				1DFD5DB129E2E32600362CC4 /* SampleStep.swift in Sources */,
 				1DFD5DC129E2E76800362CC4 /* MemoReadingFlow.swift in Sources */,
 				1DFD5DCB29E3DC2F00362CC4 /* MemoWritingFlow.swift in Sources */,
@@ -589,19 +621,6 @@
 			productName = RxFlow;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		BD35E31D29E00A8A00026C5D /* RxMemo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BD35E31E29E00A8A00026C5D /* RxMemo.xcdatamodel */,
-			);
-			currentVersion = BD35E31E29E00A8A00026C5D /* RxMemo.xcdatamodel */;
-			path = RxMemo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = BD35E2E029E0049F00026C5D /* Project object */;
 }

@@ -14,7 +14,7 @@ import RxFlow
 class AppStepper: Stepper {
     
     let steps: PublishRelay<Step> = .init()
-    var initialStep: Step = SampleStep.memoList
+    var initialStep: Step = SampleStep.dashboardIsRequired
     
     private let provider: ServiceProviderType
     private let disposeBag: DisposeBag = .init()
@@ -38,6 +38,8 @@ class AppStepper: Stepper {
 class AppFlow: Flow {
     
     var root: Presentable { self.rootWindow }
+    
+    private let rootViewController = UINavigationController()
 
     private let rootWindow: UIWindow
     private let provider: ServiceProviderType
@@ -57,16 +59,16 @@ class AppFlow: Flow {
     func navigate(to step: Step) -> FlowContributors {
 //        guard let step = step as? SampleStep else { return FlowContributors.none }
         
-        let memoFlow = MemoReadingFlow(with: self.provider)
+        let dashboardFlow = DashboardFlow(with: self.provider)
         
         /// .created -> memoFlow의 root 파라메터를 클로저로 반환.
-        Flows.use(memoFlow, when: .created) { [unowned self] root in
+        Flows.use(dashboardFlow, when: .created) { [unowned self] root in
             self.rootWindow.rootViewController = root
         }
         
         let nextStep = OneStepper(withSingleStep: step)
         
-        return .one(flowContributor: .contribute(withNextPresentable: memoFlow,
+        return .one(flowContributor: .contribute(withNextPresentable: dashboardFlow,
                                                  withNextStepper: nextStep))
         
     }

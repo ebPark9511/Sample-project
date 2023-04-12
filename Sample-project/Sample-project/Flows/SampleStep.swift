@@ -9,6 +9,10 @@ import RxFlow
 
 enum SampleStep: Step {
     
+    case dashboardIsRequired
+    
+    // MARK: - Memo
+    
     // MemoReading
     case memoList
     case memoDetail(_ memo: Memo)
@@ -17,5 +21,9 @@ enum SampleStep: Step {
     // MemoWriting
     case memoComposeIsRequired
     case memoComposeIsComplete
+    
+    
+    // MARK: - GithubSearch
+    case githubSearchMain
     
 }
