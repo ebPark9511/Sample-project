@@ -17,8 +17,6 @@ class MemoDetailViewController: UIViewController, StoryboardView {
     @IBOutlet private weak var contentLabel: UITextView!
     
     @IBOutlet private weak var deleteButton: UIBarButtonItem!
-    @IBOutlet private weak var editButton: UIBarButtonItem!
-    @IBOutlet private weak var shareButton: UIBarButtonItem!
     
     deinit { print("\(type(of: self)): \(#function)") }
     

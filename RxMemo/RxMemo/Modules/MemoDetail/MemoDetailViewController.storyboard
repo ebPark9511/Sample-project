@@ -22,10 +22,6 @@
                                     <barButtonItem systemItem="trash" id="GT9-pA-Asl">
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="edO-Y9-vkl"/>
-                                    <barButtonItem systemItem="compose" id="89t-of-wxW"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XWc-JA-rES"/>
-                                    <barButtonItem systemItem="action" id="IJH-Zw-hrY"/>
                                 </items>
                             </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cfB-jO-ddV">
@@ -63,8 +59,6 @@
                     <connections>
                         <outlet property="contentLabel" destination="zjE-mQ-Ika" id="wR8-MJ-1sK"/>
                         <outlet property="deleteButton" destination="GT9-pA-Asl" id="5tE-m8-xFB"/>
-                        <outlet property="editButton" destination="89t-of-wxW" id="E6E-Hj-elh"/>
-                        <outlet property="shareButton" destination="IJH-Zw-hrY" id="RhP-6o-GCe"/>
                         <outlet property="titleLabel" destination="hgl-q9-SEA" id="zoa-Wx-wa3"/>
                     </connections>
                 </viewController>

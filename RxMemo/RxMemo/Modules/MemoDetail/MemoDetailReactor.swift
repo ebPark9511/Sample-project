@@ -31,19 +31,23 @@ class MemoDetailReactor: Reactor, Stepper {
     
     // MARK: - Properties
     var initialState: State
+    let provider: ServiceProviderType
     
     deinit { print("\(type(of: self)): \(#function)") }
     
     init(
-        initialState: State = .init(memo: nil)
+        initialState: State = .init(memo: nil),
+        provider: ServiceProviderType
     ) {
         self.initialState = initialState
+        self.provider = provider
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .delete:
-            steps.accept(SampleStep.memoList)
+            provider.memoryStorage.delete(memo: self.initialState.memo!)
+            steps.accept(SampleStep.memoDetailIsComplete)
             return .empty()
         }
         
