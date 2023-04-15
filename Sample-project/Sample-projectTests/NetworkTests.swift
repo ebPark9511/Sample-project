@@ -11,7 +11,7 @@ import XCTest
 import RxSwift
 import RxCocoa
 
-final class Sample_projectTests: XCTestCase {
+final class NetworkTests: XCTestCase {
     var disposeBag: DisposeBag = DisposeBag()
     
     var manager: NetworkManger!
@@ -28,15 +28,20 @@ final class Sample_projectTests: XCTestCase {
 
     func testRequestSucess() {
         let expectation = XCTestExpectation()
-        self.manager.reqeust(TestEndpoint.test, of: TestResponse.self)
+        
+        self.manager.reqeust(TestEndpoint.alwaysSuccess, of: TestResponse.self)
             .subscribe({ e in
-                print(e)
+                
+                switch e {
+                case .success(let response):
+                    XCTAssertEqual(response, TestResponse.succeedResult)
+                    
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                }
+                
+                expectation.fulfill()
             })
-//            .subscribe(onSuccess: { res in
-//                print(res)
-//            }, onFailure: { er in
-//                print(er)
-//            })
             .disposed(by: disposeBag)
         
         
@@ -44,7 +49,25 @@ final class Sample_projectTests: XCTestCase {
     }
 
     func testRequestFail() {
+        let expectation = XCTestExpectation()
         
+        self.manager.reqeust(TestEndpoint.alwaysFail, of: TestResponse.self)
+            .subscribe({ e in
+                
+                switch e {
+                case .success(let _):
+                    XCTFail()
+                    
+                case .failure(let error):
+                    XCTAssertTrue(true, error.localizedDescription)
+                }
+                
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        wait(for: [expectation], timeout: 2)
     }
 
 }
@@ -53,7 +76,8 @@ final class Sample_projectTests: XCTestCase {
 // MARK: -
 enum TestEndpoint: ReqeustType {
     
-    case test
+    case alwaysSuccess
+    case alwaysFail
     
     var baseURL: String {
         "https://jsonplaceholder.typicode.com"
@@ -61,8 +85,10 @@ enum TestEndpoint: ReqeustType {
     
     var path: String {
         switch self {
-        case .test:
+        case .alwaysSuccess:
             return "/todos/1"
+        default:
+            return ""
         }
     }
     
@@ -85,4 +111,13 @@ struct TestResponse: Decodable, ResponseType {
     let id: Int
     let title: String
     let completed: Bool
+}
+
+extension TestResponse: Equatable {
+    static var succeedResult: TestResponse {
+        TestResponse(userId: 1,
+                     id: 1,
+                     title: "delectus aut autem",
+                     completed: false)
+    }
 }
