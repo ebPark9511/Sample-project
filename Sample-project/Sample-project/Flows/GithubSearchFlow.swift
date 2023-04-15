@@ -75,7 +75,7 @@ private extension GithubSearchFlow {
     }
     
     func coordinateToGithubSearchList(searchKeyword: String) -> FlowContributors {
-        let reactor = GithubSearchResultReactor(initialState: .init(keyword: searchKeyword),
+        let reactor = GithubSearchResultReactor(initialState: .init(query: searchKeyword),
                                                 provider: self.provider)
         
         let viewController = UIStoryboard(

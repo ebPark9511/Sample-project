@@ -18,6 +18,11 @@ final class GithubSearchResultViewController: UIViewController, StoryboardView {
     
     deinit { print("\(type(of: self)): \(#function)") }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = DisposeBag()
+    }
+    
     func bind(reactor: GithubSearchResultReactor) {
         bindAction(reactor)
         bindState(reactor)
@@ -41,14 +46,21 @@ final class GithubSearchResultViewController: UIViewController, StoryboardView {
         
         reactor.state
             .observe(on: MainScheduler.instance)
-            .map { $0.errorMessage }
-            .subscribe(onNext: { self.showAlert(message: $0) })
+            .filter { $0.isNetworkError == true }
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { _ in self.showAlert() })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .observe(on: MainScheduler.instance)
+            .map { $0.isLoadingNextPage }
+            .bind(to: self.indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
         
     }
     
-    private func showAlert(message: String?) {
-        UIAlertController.alert(title: "Error", message: message ?? "네크워크 에러")
+    private func showAlert() {
+        UIAlertController.alert(title: "Error", message: "네크워크 에러")
             .action(title: "확인", style: .default) { _ in }
             .present(to: self)
         
