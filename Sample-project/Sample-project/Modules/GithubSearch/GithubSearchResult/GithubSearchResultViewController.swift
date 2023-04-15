@@ -14,6 +14,7 @@ final class GithubSearchResultViewController: UIViewController, StoryboardView {
     var disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     
     deinit { print("\(type(of: self)): \(#function)") }
     
