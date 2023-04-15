@@ -29,7 +29,7 @@ final class NetworkTests: XCTestCase {
     func testRequestSucess() {
         let expectation = XCTestExpectation()
         
-        self.manager.reqeust(TestEndpoint.alwaysSuccess, of: TestResponse.self)
+        self.manager.reqeust(TestRequest.alwaysSuccess, of: TestResponse.self)
             .subscribe({ e in
                 
                 switch e {
@@ -51,11 +51,11 @@ final class NetworkTests: XCTestCase {
     func testRequestFail() {
         let expectation = XCTestExpectation()
         
-        self.manager.reqeust(TestEndpoint.alwaysFail, of: TestResponse.self)
+        self.manager.reqeust(TestRequest.alwaysFail, of: TestResponse.self)
             .subscribe({ e in
                 
                 switch e {
-                case .success(let _):
+                case .success:
                     XCTFail()
                     
                 case .failure(let error):
@@ -74,7 +74,7 @@ final class NetworkTests: XCTestCase {
 
 
 // MARK: -
-enum TestEndpoint: ReqeustType {
+enum TestRequest: ReqeustType {
     
     case alwaysSuccess
     case alwaysFail

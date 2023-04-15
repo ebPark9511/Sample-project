@@ -45,7 +45,7 @@ private extension DashboardFlow {
     private func coordinateToDashboard() -> FlowContributors {
         
         let memoReadingFlow = MemoReadingFlow(with: self.provider)
-        let githubSearchFlow = GithubSearchFlow()
+        let githubSearchFlow = GithubSearchFlow(with: self.provider)
         
         Flows.use(memoReadingFlow, githubSearchFlow, when: .created) { [unowned self] (root1: UINavigationController, root2: UINavigationController) in
             let tabBarItem1 = UITabBarItem(title: "Memo", image: nil, selectedImage: nil)

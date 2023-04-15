@@ -29,8 +29,16 @@ class GithubSearchMainReactor: Reactor, Stepper {
     var steps: PublishRelay<Step> = .init()
     
     // MARK: - Properties
-    var initialState: State = .init()
-//    let provider: ServiceProviderType
+    var initialState: State
+    let provider: ServiceProviderType
+    
+    init(
+        initialState: State = .init(),
+        provider: ServiceProviderType
+    ) {
+        self.initialState = initialState
+        self.provider = provider
+    }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {

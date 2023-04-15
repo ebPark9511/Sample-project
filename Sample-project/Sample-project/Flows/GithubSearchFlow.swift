@@ -21,6 +21,12 @@ class GithubSearchFlow: Flow {
         return viewController
     }()
     
+    private let provider: ServiceProviderType
+    
+    init(with services: ServiceProviderType) {
+        self.provider = services
+    }
+    
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? SampleStep else { return FlowContributors.none }
         
@@ -44,7 +50,7 @@ class GithubSearchFlow: Flow {
 private extension GithubSearchFlow {
     
     func coordinateToGithubSearch() -> FlowContributors {
-        let reactor = GithubSearchMainReactor()
+        let reactor = GithubSearchMainReactor(provider: self.provider)
         
         let viewController = UIStoryboard(
             name: "GithubSearchMainViewController",
@@ -69,7 +75,8 @@ private extension GithubSearchFlow {
     }
     
     func coordinateToGithubSearchList(searchKeyword: String) -> FlowContributors {
-        let reactor = GithubSearchResultReactor(initialState: .init(searchKeyword: searchKeyword))
+        let reactor = GithubSearchResultReactor(initialState: .init(keyword: searchKeyword),
+                                                provider: self.provider)
         
         let viewController = UIStoryboard(
             name: "GithubSearchResultViewController",
