@@ -25,5 +25,6 @@ enum SampleStep: Step {
     
     // MARK: - GithubSearch
     case githubSearchMain
+    case githubSearchList(_ searchKeyword: String)
     
 }

@@ -28,6 +28,9 @@ class GithubSearchFlow: Flow {
             
         case .githubSearchMain:
             return coordinateToGithubSearch()
+            
+        case .githubSearchList(let searchKeyword):
+            return coordinateToGithubSearchList(searchKeyword: searchKeyword)
 
         default:
             return .none
@@ -58,6 +61,30 @@ private extension GithubSearchFlow {
         
         self.rootViewController.setViewControllers([viewController],
                                                    animated: true)
+        
+        return .one(
+            flowContributor: .contribute(withNextPresentable: viewController,
+                                         withNextStepper: reactor)
+        )
+    }
+    
+    func coordinateToGithubSearchList(searchKeyword: String) -> FlowContributors {
+        let reactor = GithubSearchResultReactor(initialState: .init(searchKeyword: searchKeyword))
+        
+        let viewController = UIStoryboard(
+            name: "GithubSearchResultViewController",
+            bundle: nil
+        )
+            .instantiateInitialViewController()
+        as! GithubSearchResultViewController
+        
+        viewController.title = searchKeyword
+        
+        viewController.loadViewIfNeeded()
+        
+        viewController.bind(reactor: reactor)
+        
+        self.rootViewController.pushViewController(viewController, animated: true)
         
         return .one(
             flowContributor: .contribute(withNextPresentable: viewController,
