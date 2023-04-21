@@ -1,1 +1,1 @@
-# RxMemo
+# Sample-project
